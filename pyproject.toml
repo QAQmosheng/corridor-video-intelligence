@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "corridor-video-intelligence"
+version = "0.2.0"
+description = "Weight-independent native corridor video intelligence prototype"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "opencv-python-headless>=4.10",
+]
+
+[project.scripts]
+corridor-video = "corridor_video.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

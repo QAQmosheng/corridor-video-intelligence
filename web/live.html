@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管廊持续检测中心</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/live.css">
+</head>
+<body class="live-body">
+  <header>
+    <div class="brand"><span class="brand-mark">AI</span><div><strong>管廊持续检测中心</strong><small>基准图差异 · 事件生命周期</small></div></div>
+    <div class="health" id="health"><i></i><span>正在连接</span></div>
+  </header>
+  <main class="live-main">
+    <section class="live-hero">
+      <div><p class="eyebrow" id="camera">CAM-01 · CORRIDOR-01</p><h1>实时视频监控</h1><p id="source">等待视频源</p></div>
+      <div class="live-clock" id="clock">--:--:--</div>
+    </section>
+    <section class="live-grid">
+      <div class="video-panel">
+        <div class="video-toolbar"><span><b>●</b> LIVE</span><span id="baseline">BASE v0 · uninitialized</span></div>
+        <div class="live-video"><img src="/stream.mjpg" alt="实时检测视频"><div id="videoError" class="video-error"></div></div>
+        <div class="video-legend"><span class="legend candidate">候选目标</span><span class="legend alarm">活动报警</span><span id="diff">差异 0.0%</span></div>
+      </div>
+      <aside class="live-side">
+        <div class="aside-head"><div><p class="eyebrow">ACTIVE INCIDENTS</p><h2>当前报警</h2></div><span id="activeCount">0</span></div>
+        <div id="activeAlarms" class="alarm-empty">当前无活动报警</div>
+      </aside>
+    </section>
+    <section class="metrics live-metrics">
+      <div><span>处理帧数</span><strong id="frames">0</strong></div>
+      <div><span>处理速度</span><strong id="fps">0 FPS</strong></div>
+      <div><span>人员 / 物品</span><strong id="targets">0 / 0</strong></div>
+      <div><span>累计事件</span><strong id="eventCount">0</strong></div>
+    </section>
+    <section class="event-panel">
+      <div class="section-title"><div><p class="eyebrow">EVENT HISTORY</p><h2>报警记录</h2></div><span>同一持续异常只记录一次</span></div>
+      <div id="events" class="empty">检测到稳定异常后，事件将在这里出现。</div>
+    </section>
+  </main>
+  <script src="/live.js"></script>
+</body>
+</html>

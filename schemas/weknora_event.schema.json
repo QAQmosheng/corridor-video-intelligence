@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/schemas/weknora-video-event-1.0.json",
+  "title": "WeKnoraVideoEvent",
+  "type": "object",
+  "required": ["schema_version", "event_id", "event_text", "event_type", "event_time", "location", "device_id", "algorithm_confidence", "images", "upstream_metadata"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "pattern": "^VID-"},
+    "event_text": {"type": "string", "minLength": 1},
+    "event_type": {"enum": ["worker_detected", "person_intrusion", "fire_smoke", "waterlogging", "abandoned_object", "other_intrusion", "visual_review_required"]},
+    "event_time": {"type": "string", "format": "date-time"},
+    "location": {
+      "type": "object",
+      "required": ["corridor_section_id", "camera_id", "location_text"],
+      "properties": {
+        "corridor_section_id": {"type": "string"},
+        "camera_id": {"type": "string"},
+        "location_text": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "device_id": {"type": "string"},
+    "algorithm_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "images": {"type": "array", "items": {"type": "object"}},
+    "upstream_metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

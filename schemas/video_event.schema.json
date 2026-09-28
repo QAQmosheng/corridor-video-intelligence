@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/schemas/video-event-1.0.json",
+  "title": "VideoEvent",
+  "type": "object",
+  "required": [
+    "schema_version", "event_id", "event_type", "event_text", "captured_at",
+    "corridor_id", "camera_id", "confidence", "reason_code", "detections", "images", "metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "minLength": 16},
+    "event_type": {
+      "enum": [
+        "abnormal_behavior", "worker_detected", "person_intrusion", "fire_smoke",
+        "waterlogging", "abandoned_object", "other_intrusion", "visual_review_required"
+      ]
+    },
+    "event_text": {"type": "string", "minLength": 1},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "corridor_id": {"type": "string", "minLength": 1},
+    "camera_id": {"type": "string", "minLength": 1},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "reason_code": {"type": "string", "minLength": 1},
+    "session_id": {"type": ["string", "null"]},
+    "detections": {"type": "array", "items": {"type": "object"}},
+    "images": {"type": "array", "items": {"type": "object"}},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

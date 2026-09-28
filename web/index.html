@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管廊视频智能体 · 独立算法原型</title>
+  <meta name="description" content="多摄像头视频识别与廊段级遗留物判定动态演示">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="brand-mark">CV</span><div><strong>管廊视频智能体</strong><small>独立算法原型 · 10.4</small></div></div>
+    <div class="health"><i></i>本地推理链路正常</div>
+  </header>
+  <main>
+    <section class="control-panel">
+      <div><p class="eyebrow">当前阶段 <span id="step">00</span> / 35</p><h1 id="phase">基准标定</h1><p id="description">三台摄像头分别建立自己的稳定基准。</p></div>
+      <div class="controls"><button id="toggle">▶ 开始演示</button><button class="secondary" id="next">单步</button><button class="ghost" id="reset">重置</button></div>
+      <div class="progress"><span id="progress"></span></div>
+    </section>
+
+    <section class="metrics">
+      <div><span>已处理帧</span><strong id="frames">0</strong></div>
+      <div><span>视觉大模型调用</span><strong id="llm">0</strong><em>差异门控节省调用</em></div>
+      <div><span>正式事件</span><strong id="eventCount">0</strong></div>
+      <div><span>算法内核</span><strong class="small" id="algorithm">Native CV 0.1</strong></div>
+    </section>
+
+    <section class="workspace">
+      <div class="camera-area">
+        <div class="section-title"><div><p class="eyebrow">CORRIDOR-01</p><h2>综合舱 · 多摄像头协同</h2></div><span class="session" id="session">未建立会话</span></div>
+        <div class="cameras" id="cameras"></div>
+      </div>
+      <aside>
+        <div class="aside-head"><div><p class="eyebrow">DECISION TRACE</p><h2>判定轨迹</h2></div><span id="sessionState">idle</span></div>
+        <ol id="trace">
+          <li class="active"><i>1</i><div><strong>画面差异检测</strong><span>先门控，再进行语义识别</span></div></li>
+          <li><i>2</i><div><strong>目标检测与跟踪</strong><span>人员、PPE、物品候选</span></div></li>
+          <li><i>3</i><div><strong>冻结廊段基准</strong><span>同廊段三机共享会话</span></div></li>
+          <li><i>4</i><div><strong>确认全廊段离场</strong><span>盲区期间禁止误报</span></div></li>
+          <li><i>5</i><div><strong>验证物品持续存在</strong><span>满足三条件才生成事件</span></div></li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="event-panel">
+      <div class="section-title"><div><p class="eyebrow">EVENT OUTBOX</p><h2>标准化事件流</h2></div><span>准备投递至 WeKnora</span></div>
+      <div id="events" class="empty">演示开始后，事件将在这里出现。人员尚未离开整个廊段时不会生成遗留物事件。</div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
